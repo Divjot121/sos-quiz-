@@ -2,20 +2,35 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { config } from "dotenv";
-const app=express();
-app.use(morgan('tiny'));
-app.use(cors())
+import router from "./router/route.js";
+import connect from "./database/conn.js";
+const app = express();
+app.use(morgan("tiny"));
+app.use(cors());
 app.use(express.json());
 config();
 
-const port=process.env.PORT || 8080
-app.get("/",(req,res)=>{
+const port = process.env.PORT || 8080;
+
+app.use("/api", router);
+app.get("/", (req, res) => {
+  try {
+    res.json("server started");
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+connect()
+  .then(() => {
     try {
-        res.json("server started")
+      app.listen(port, () => {
+        console.log(`server started at port ${port}`);
+      });
     } catch (error) {
-        res.json(error)
+      console.log("could not connect  to database ");
     }
-})
-app.listen(port,()=>{
-    console.log(`server started at port ${port}`);
-})
+  })
+  .catch((error) => {
+    console.log("Invalid Connection to database");
+  });
