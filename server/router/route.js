@@ -1,11 +1,19 @@
 import { Router } from "express";
 const router = Router();
-import * as controller from "../controllers/controller.js";
 
-//questions api
-router.route("/questions").get(controller.getQuiz).post(controller.postQuiz);
+/** import controllers */
+import * as controller from '../controllers/controller.js';
 
-//result api
-router.route("/result").get(controller.getResult).post(controller.postResult);
+/** Questions Routes API */
+
+router.route('/questions')
+        .get(controller.getQuestions) /** GET Request */
+        .post(controller.insertQuestions) /** POST Request */
+        
+
+router.route('/result')
+        .get(controller.getResult)
+        .post(controller.storeResult)
+      
 
 export default router;

@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import QuizContextprovider from "./config/ContextApi";
 import QuizUser from "./Pages/QuizUser";
 import Login from "./Pages/Login";
+import TableResult from "./Pages/TableResult";
 
 const App = () => {
   const [quesId, setQuizId] = useState();
@@ -24,6 +25,7 @@ const App = () => {
             element={<Login quesId={quesId} setDetails={setDetails} details={details} />}
           />
           <Route exact path="/quiz/:id" element={<QuizUser details={details} />} />
+          <Route exact path="/score/:id" element={<TableResult/>}/>
         </Routes>
       </Router>
     </QuizContextprovider>

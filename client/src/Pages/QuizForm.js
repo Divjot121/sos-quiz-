@@ -52,6 +52,12 @@ const QuizForm = () => {
         d,
       },
     ]);
+    setQuest("");
+    setA("");
+    setB("");
+    setC("");
+    setD("");
+    setCans("");
   };
   const handlesubmit = (event) => {
     dispatch({

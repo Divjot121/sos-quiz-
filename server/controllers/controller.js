@@ -1,15 +1,53 @@
-//questions
-export async function getQuiz(req,res){
-    res.json("questions get request")
-}
-export async function postQuiz(req,res){
-     res.json("questions post  request")
-}
-//result
-export async function getResult(req,res){
-    res.json("result get request")
+import Question from "../models/questionSchema.js";
+import Result from "../models/ResultSchema.js";
+/** get all questions */
+export async function getQuestions(req, res) {
+  try {
+    const q = await Question.find();
+    res.json(q);
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
-export async function postResult(req,res){
-    res.json("result post request")
+/** insert all questinos */
+export async function insertQuestions(req, res) {
+  try {
+    Question.create(
+      {
+       id,
+        time,
+        date,
+        title,
+        desc,
+        QuizQues,
+      },
+      function (err, data) {
+        res.json({ msg: "data inserted successfully" });
+      }
+    );
+  } catch (error) {
+    res.json({ error });
+  }
+}
+
+/** get all result */
+export async function getResult(req, res) {
+    try {
+        const q = await Result.find();
+        res.json(q);
+      } catch (error) {
+        res.json({ error });
+      }
+}
+
+/** post all result */
+export async function storeResult(req, res) {
+ try {
+    Result.create({name,email,score},function(err,data){
+        res.json({msg:"result stored"})
+    })
+ } catch (error) {
+    res.json({error})
+ }
 }

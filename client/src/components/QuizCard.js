@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const QuizCard = (props) => {
-  const handleId=()=>{
-props.setQuizId(props.quizItem.id);
-  }
+  const handleId = () => {
+    props.setQuizId(props.quizItem.id);
+  };
   return (
     <div
       className="row m-3"
@@ -16,15 +16,21 @@ props.setQuizId(props.quizItem.id);
       </div>
       <div className="rightcard col m-3 ">
         <div className="row">
-        <h5 className="col">{props.quizItem.date}</h5>
-        <h5 className="col">{props.quizItem.Time}</h5>
-        <Link
-          to="/login"
-          className="text-light btn btn-info col"
-          onClick={handleId}
-        >
-          start
-        </Link>
+          <h5 className="col">{props.quizItem.date}</h5>
+          <h5 className="col">{props.quizItem.Time}</h5>
+          <Link
+            to={`/score/${props.quizItem.id}`}
+            className="text-light btn btn-info col"
+          >
+            Scores
+          </Link>
+          <Link
+            to="/login"
+            className="text-light btn btn-info col"
+            onClick={handleId}
+          >
+            start
+          </Link>
         </div>
       </div>
     </div>
