@@ -1,11 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import FormCard from "../components/FormCard";
-import { QuizContext } from "../config/ContextApi";
+
 import { v4 as uuidv4 } from "uuid";
 import QuesItem from "../components/QuesItem";
 import "./QuizForm.css";
+
+
+
 const QuizForm = () => {
-  const { dispatch } = useContext(QuizContext);
+
   const [QuizQues, setQuizQues] = useState([]);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -59,21 +62,38 @@ const QuizForm = () => {
     setD("");
     setCans("");
   };
+ 
+ 
   const handlesubmit = (event) => {
-    dispatch({
-      type: "ADD_QUIZ",
-      quiz: { title, desc, QuizQues },
-    });
-    alert("quiz added");
-    setQuizQues([]);
-    setTitle("");
-    setDesc("");
-    setQuest("");
-    setA("");
-    setB("");
-    setC("");
-    setD("");
-    setCans("");
+    event.preventDefault();
+    const today=new Date();
+    const month=today.getMonth()+1;
+    const date=today.getDate()+":"+month+":"+today.getFullYear();
+    const time=today.getHours()+":"+today.getMinutes()
+    event.preventDefault();
+    
+    fetch("http://localhost:5000/api/questions", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        id:uuidv4(),
+        time:time,
+        date:date,
+        title,
+        desc,
+        QuizQues,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        
+      });
   };
 
   return (

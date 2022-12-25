@@ -15,6 +15,8 @@ export async function postQuestionData(url, quiz) {
   console.log(data);
 }
 
+
+
 //get results
 export async function getResultData(url) {
   const data = await (await axios.get(url))?.data;

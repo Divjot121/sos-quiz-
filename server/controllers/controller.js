@@ -12,10 +12,11 @@ export async function getQuestions(req, res) {
 
 /** insert all questinos */
 export async function insertQuestions(req, res) {
+  const { id, time, date, title, desc, QuizQues } = req.body;
   try {
     Question.create(
       {
-       id,
+        id,
         time,
         date,
         title,
@@ -33,21 +34,21 @@ export async function insertQuestions(req, res) {
 
 /** get all result */
 export async function getResult(req, res) {
-    try {
-        const q = await Result.find();
-        res.json(q);
-      } catch (error) {
-        res.json({ error });
-      }
+  try {
+    const q = await Result.find();
+    res.json(q);
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 /** post all result */
 export async function storeResult(req, res) {
- try {
-    Result.create({name,email,score},function(err,data){
-        res.json({msg:"result stored"})
-    })
- } catch (error) {
-    res.json({error})
- }
+  try {
+    Result.create({ name, email, score }, function (err, data) {
+      res.json({ msg: "result stored" });
+    });
+  } catch (error) {
+    res.json({ error });
+  }
 }
