@@ -27,6 +27,7 @@ const TableResult = () => {
       </thead>
       <tbody>
         {ResultList.map((resultlist,index) => {
+          if(resultlist.quesid===id){
           return (
             <tr key={index}>
               <th scope="row">{index}</th>
@@ -35,6 +36,7 @@ const TableResult = () => {
               <td>{resultlist.score}</td>
             </tr>
           );
+          }
         })}
       </tbody>
     </table>
