@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 /** result model */
 const resultModel = new Schema({
+  quesid:{type:String},
   name:{type:String},
   email:{type:String},
   score:{type:Number},

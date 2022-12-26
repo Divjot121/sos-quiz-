@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Result from "./Result";
 import "./UserQues.css";
-const UserQues = ({ count, setCount, title, desc, QuizQues,details }) => {
+const UserQues = ({
+  count,
+  setCount,
+  title,
+  desc,
+  QuizQues,
+  details,
+  quesid,
+}) => {
   const [quesNo, setQuesNo] = useState(0);
   const [cont, setCont] = useState(true);
   const [sel, setSel] = useState();
@@ -15,7 +23,7 @@ const UserQues = ({ count, setCount, title, desc, QuizQues,details }) => {
     setTimer(60);
     if (sel && QuizQues[quesNo].cans) {
       if (sel === QuizQues[quesNo].cans) {
-        setCount((count) => count + 1);
+        setCount((count) => count + 10);
       }
     }
     console.log(count);
@@ -23,6 +31,26 @@ const UserQues = ({ count, setCount, title, desc, QuizQues,details }) => {
       setQuesNo((quesNo) => quesNo + 1);
     } else {
       setCont((cont) => !cont);
+
+      fetch("http://localhost:5000/api/result", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          quesid,
+          name: details[0].Name,
+          email: details[0].Email,
+          score: count,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data, "userRegister");
+        });
     }
   };
   useEffect(() => {
@@ -106,10 +134,9 @@ const UserQues = ({ count, setCount, title, desc, QuizQues,details }) => {
                 Submit
               </button>
             </>
-            
           </div>
         ) : (
-          <Result count={count} details={details} />
+          <Result count={count} details={details}  />
         )}
       </div>
     </div>

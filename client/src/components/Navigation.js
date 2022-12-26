@@ -28,6 +28,11 @@ const Navigation = () => {
                 Add Quiz
               </Link>
             </NavItem>
+            <NavItem>
+              <Link to="/score" className="nav-link">
+                Scores
+              </Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

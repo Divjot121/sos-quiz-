@@ -17,13 +17,8 @@ const QuizCard = (props) => {
       <div className="rightcard col m-3 ">
         <div className="row">
           <h5 className="col">{props.quizItem.date}</h5>
-          <h5 className="col">{props.quizItem.Time}</h5>
-          <Link
-            to={`/score/${props.quizItem.id}`}
-            className="text-light btn btn-info col"
-          >
-            Scores
-          </Link>
+          <h5 className="col">{props.quizItem.time}</h5>
+         
           <Link
             to="/login"
             className="text-light btn btn-info col"

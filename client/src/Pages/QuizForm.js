@@ -1,14 +1,11 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import FormCard from "../components/FormCard";
 
 import { v4 as uuidv4 } from "uuid";
 import QuesItem from "../components/QuesItem";
 import "./QuizForm.css";
 
-
-
 const QuizForm = () => {
-
   const [QuizQues, setQuizQues] = useState([]);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -62,16 +59,15 @@ const QuizForm = () => {
     setD("");
     setCans("");
   };
- 
- 
+
   const handlesubmit = (event) => {
     event.preventDefault();
-    const today=new Date();
-    const month=today.getMonth()+1;
-    const date=today.getDate()+":"+month+":"+today.getFullYear();
-    const time=today.getHours()+":"+today.getMinutes()
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const date = today.getDate() + ":" + month + ":" + today.getFullYear();
+    const time = today.getHours() + ":" + today.getMinutes();
     event.preventDefault();
-    
+
     fetch("http://localhost:5000/api/questions", {
       method: "POST",
       crossDomain: true,
@@ -81,9 +77,9 @@ const QuizForm = () => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        id:uuidv4(),
-        time:time,
-        date:date,
+        id: uuidv4(),
+        time: time,
+        date: date,
         title,
         desc,
         QuizQues,
@@ -92,8 +88,8 @@ const QuizForm = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userRegister");
-        
       });
+      alert("Quiz added successfully")
   };
 
   return (

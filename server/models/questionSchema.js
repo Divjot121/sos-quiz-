@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 /** question model */
 const questionModel = new Schema({
   id: {type:String},
-  Time: {type:String},
+  time: {type:String},
   date: {type:String},
   title: {type:String},
   desc: {type:String},
