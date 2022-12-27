@@ -89,48 +89,38 @@ const QuizForm = () => {
       .then((data) => {
         console.log(data, "userRegister");
       });
-      alert("Quiz added successfully")
-      setTitle("")
-      setDesc("")
+    alert("Quiz added successfully");
+    setTitle("");
+    setDesc("");
   };
-
+  
   return (
-    <div className="cont">
-      <div className="w-100 border">
-        <form className="border">
-          <div className="row g-3 align-items-center m-1">
-            <div className="col-auto">
-              <label htmlFor="title" className="col-form-label ">
-                Quiz Title
-              </label>
-            </div>
-            <div className="col-auto">
-              <input
-                type="text"
-                name="title"
-                value={title}
-                onChange={handletitle}
-                className="form-control"
-              />
-            </div>
+    <div className="cont ">
+      <div>
+        <form >
+          <div className=" g-3 align-items-center m-1">
+            <label htmlFor="title">Title</label>
+
+            <input
+              type="text"
+              name="title"
+              value={title}
+              onChange={handletitle}
+              className="form-control w-75"
+            />
           </div>
-          <div className="row g-3 align-items-center m-1">
-            <div className="col-auto">
-              <label htmlFor="info" className="col-form-label">
-                Description
-              </label>
-            </div>
-            <div className="col-auto">
-              <textarea
-                name="info"
-                id="desc"
-                cols="60"
-                rows="3"
-                value={desc}
-                onChange={handledesc}
-                className="form-control"
-              ></textarea>
-            </div>
+          <div className=" g-3 form-group m-1">
+            <label htmlFor="info">Description</label>
+
+            <textarea
+              name="info"
+              id="desc"
+              cols="60"
+              rows="3"
+              value={desc}
+              onChange={handledesc}
+              className="form-control w-75 m-1"
+            ></textarea>
           </div>
           <FormCard
             AddQues={AddQues}
@@ -156,11 +146,8 @@ const QuizForm = () => {
           </button>
         </form>
       </div>
-      <div className="w-100 border ">
-        {QuizQues &&
-          QuizQues.map((question, index) => {
-            return <QuesItem question={question} key={index} />;
-          })}
+      <div>
+        <QuesItem QuizQues={QuizQues} setQuizQues={setQuizQues} />
       </div>
     </div>
   );

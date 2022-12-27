@@ -1,40 +1,33 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, NavItem, NavbarToggler, Collapse, Nav } from "reactstrap";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <Link to="/" className="navbar-brand">
-          SOS INFO TECH
-        </Link>
-        <NavbarToggler
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand>SOS TECH</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
               <Link to="/" className="nav-link">
                 Quiz
               </Link>
-            </NavItem>
-            <NavItem>
+
               <Link to="/form" className="nav-link">
                 Add Quiz
               </Link>
-            </NavItem>
-            <NavItem>
+
               <Link to="/score" className="nav-link">
                 Scores
               </Link>
-            </NavItem>
-          </Nav>
-        </Collapse>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
       </Navbar>
     </div>
   );

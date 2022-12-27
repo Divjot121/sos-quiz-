@@ -31,7 +31,7 @@ const Scores = () => {
             <div className="rightcard col m-3 ">
               <div className="row">
                 <h5 className="col">{quizItem.date}</h5>
-                <h5 className="col">{quizItem.Time}</h5>
+                <h5 className="col">{quizItem.time}</h5>
 
                 <Link
                   to={`/score/${quizItem.id}`}

@@ -17,22 +17,14 @@ const FormCard = ({
 }) => {
   return (
     <div className="container">
-      <div className="row g-1 align-items-center m-1">
-        <div className="col-auto">
-          <label htmlFor="ques" className="col-form-label ">
-            Q.
-          </label>
-        </div>
-        <div className="col-auto">
-          <input
-            type="text"
-            placeholder="enter the question.."
-            value={quest}
-            onChange={handleQues}
-            className="form-control"
-            style={{ width: "43vw" }}
-          />
-        </div>
+      <div className=" g-1 form-group ">
+        <input
+          type="text"
+          placeholder="enter the question.."
+          value={quest}
+          onChange={handleQues}
+          className="form-control w-100"
+        />
       </div>
 
       <div className="row g-1 align-items-center m-1">
@@ -120,7 +112,7 @@ const FormCard = ({
       <input
         type="button"
         className="btn btn-primary"
-        value="ADD"
+        value="Add Question"
         onClick={AddQues}
       />
     </div>

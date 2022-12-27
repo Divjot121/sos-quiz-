@@ -1,48 +1,51 @@
-import React, { useState } from "react";
-import {
-  Accordion,
-  AccordionBody,
-  AccordionHeader,
-  AccordionItem,
-} from "reactstrap";
-const QuesItem = (props) => {
-  const [open, setOpen] = useState("");
-  const toggle = (id) => {
-    if (open === id) {
-      setOpen();
-    } else {
-      setOpen(id);
+import React from "react";
+import { AiFillDelete } from "react-icons/ai";
+import Dropdown from "react-bootstrap/Dropdown";
+const QuesItem = ({QuizQues,setQuizQues}) => {
+  const removeElement = (index) => {
+    console.log(index);
+    const newQues = QuizQues.filter((arr) => arr.id!== index);
+    setQuizQues(newQues);
+    if(newQues){
+      console.log(QuizQues)
     }
   };
   return (
-    <div className="w-50 m-1">
-      <div className="row">
-        <div className="col-sm-12">
-          <form>
-            <Accordion flush open={open} toggle={toggle}>
-              <AccordionItem>
-                <AccordionHeader targetId="1">
-                  {props.question.quest}
-                </AccordionHeader>
-                <AccordionBody accordionId="1" className="border">
-                  {props.question.a &&
-                    <div>
-                      <p> A.{props.question.a} </p>
-                      <p> B.{props.question.b}</p>
+    <table className="table m-3 w-100">
+          
+          {QuizQues &&
+            QuizQues.map((question, index) => {
+              return (
+    <tbody key={index}>
+      <tr>
+        <th scope="row" className="w-50">{question.quest}</th>
+        <td>
+          {question.a && (
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Answers
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item>A.{question.a}</Dropdown.Item>
 
-                      <p> C.{props.question.c}</p>
-                      <p>D.{props.question.d}</p>
+                <Dropdown.Item>B.{question.b}</Dropdown.Item>
 
-                      <p> Correct.{props.question.cans}</p>
-                    </div>
-                  }
-                </AccordionBody>
-              </AccordionItem>
-            </Accordion>
-          </form>
-        </div>
-      </div>
-    </div>
+                <Dropdown.Item> C.{question.c}</Dropdown.Item>
+                <Dropdown.Item>D.{question.d} </Dropdown.Item>
+
+                <Dropdown.Item> Correct.{question.cans}</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
+        </td>
+        <td>
+          <AiFillDelete className="m-3" onClick={()=>removeElement(question.id)}/>
+        </td>
+      </tr>
+    </tbody>
+     );
+    })}
+</table>
   );
 };
 

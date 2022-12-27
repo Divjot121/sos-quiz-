@@ -32,12 +32,14 @@ const Result = () => {
       .then((data) => {
         console.log(data, "userRegister");
       });
+      alert("response submitted")
   };
   return (
-    <div className="container">
+    <div className="container  border">
+
       <h1>
         Name:{" "}
-        <button className="btn btn-info text-light">
+        <button className="btn btn-info text-light ">
           {location.state.details[0].Name}
         </button>
       </h1>
@@ -49,7 +51,7 @@ const Result = () => {
         </button>
       </h1>
       <h2>Your Score is {location.state.count}</h2>
-      <button onClick={handlesubmit}>confirm </button>
+      <button onClick={handlesubmit} className="btn btn-success">confirm </button>
     </div>
   );
 };
