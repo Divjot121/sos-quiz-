@@ -19,10 +19,11 @@ const TableResult = () => {
     <table className="table">
       <thead>
         <tr>
-          <th scope="col">Id</th>
+        <th scope="col">average time</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Score</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -30,7 +31,7 @@ const TableResult = () => {
           if(resultlist.quesid===id){
           return (
             <tr key={index}>
-              <th scope="row">{index}</th>
+              <th scope="row">{resultlist.avvgtime}sec</th>
               <td>{resultlist.name}</td>
               <td>{resultlist.email}</td>
               <td>{resultlist.score}</td>

@@ -44,10 +44,10 @@ export async function getResult(req, res) {
 
 /** post all result */
 export async function storeResult(req, res) {
-  const { quesid, name, email, score } = req.body;
+  const { quesid,avvgtime, name, email, score } = req.body;
 
   try {
-    Result.create({ quesid, name, email, score }, function (err, data) {
+    Result.create({ quesid,avvgtime, name, email, score }, function (err, data) {
       res.json({ msg: "result stored" });
     });
   } catch (error) {

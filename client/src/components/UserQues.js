@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Result from "./Result";
+
 import "./UserQues.css";
+import { useNavigate } from "react-router-dom";
 const UserQues = ({
   count,
   setCount,
@@ -10,49 +11,49 @@ const UserQues = ({
   details,
   quesid,
 }) => {
+  const navigate = useNavigate();
   const [quesNo, setQuesNo] = useState(0);
   const [cont, setCont] = useState(true);
   const [sel, setSel] = useState();
   const [timer, setTimer] = useState(60);
-
+  const [avgTime, setAvgTime] = useState([]);
+  
   const handlechange = (e) => {
     setSel(e.target.value);
   };
 
   const handleNext = (e) => {
+    setAvgTime([...avgTime, timer]);
     setTimer(60);
     if (sel && QuizQues[quesNo].cans) {
       if (sel === QuizQues[quesNo].cans) {
         setCount((count) => count + 10);
       }
     }
-    console.log(count);
+
     if (quesNo < QuizQues.length - 1) {
       setQuesNo((quesNo) => quesNo + 1);
     } else {
       setCont((cont) => !cont);
-
-      fetch("http://localhost:5000/api/result", {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          quesid,
-          name: details[0].Name,
-          email: details[0].Email,
-          score: count,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data, "userRegister");
-        });
     }
   };
+useEffect(()=>{
+  if (!cont) {
+    console.log(count);
+
+    navigate("/result", {
+      state: {
+        QuizQues:QuizQues,
+        quesid: quesid,
+        count: count,
+        details: details,
+        avgTime: avgTime,
+      },
+    });
+  }
+},[cont])
+ 
+
   useEffect(() => {
     const time = setInterval(() => {
       setTimer((timer) => timer - 1);
@@ -68,76 +69,73 @@ const UserQues = ({
     <div className="body">
       <h2 className="mb-5">Topic:{title}</h2>
       <div className="quiz-cont" id="quiz">
-        {cont ? (
-          <div
-            className="quiz-header"
-            key={QuizQues[quesNo].id}
-            onChange={handlechange}
-          >
-            <p>Remaining time:{timer}</p>
-            <>
-              <h4 id="question">
-                Q{quesNo + 1}.{QuizQues[quesNo].quest}
-              </h4>
-              <ul>
-                <li className="link">
-                  <input
-                    type="radio"
-                    name="answer"
-                    id="a"
-                    value={QuizQues[quesNo].a}
-                    className="answer"
-                  />
-                  <label htmlFor="a" id="a_text">
-                    {QuizQues[quesNo].a}
-                  </label>
-                </li>
-                <li className="link">
-                  <input
-                    type="radio"
-                    name="answer"
-                    id="b"
-                    value={QuizQues[quesNo].b}
-                    className="answer"
-                  />
-                  <label htmlFor="b" id="b_text">
-                    {QuizQues[quesNo].b}
-                  </label>
-                </li>
-                <li className="link">
-                  <input
-                    type="radio"
-                    name="answer"
-                    id="c"
-                    value={QuizQues[quesNo].c}
-                    className="answer"
-                  />
-                  <label htmlFor="c" id="c_text">
-                    {QuizQues[quesNo].c}
-                  </label>
-                </li>
-                <li className="link">
-                  <input
-                    type="radio"
-                    name="answer"
-                    id="d"
-                    value={QuizQues[quesNo].d}
-                    className="answer"
-                  />
-                  <label htmlFor="d" id="d_text">
-                    {QuizQues[quesNo].d}
-                  </label>
-                </li>
-              </ul>
+        <div
+          className="quiz-header"
+          key={QuizQues[quesNo].id}
+          onChange={handlechange}
+        >
+          <p>Remaining time:{timer}</p>
+          <>
+            <h4 id="question">
+              Q{quesNo + 1}.{QuizQues[quesNo].quest}
+            </h4>
+            <ul>
+              <li className="link">
+                <input
+                  type="radio"
+                  name="answer"
+                  id="a"
+                  value={QuizQues[quesNo].a}
+                  className="answer"
+                />
+                <label htmlFor="a" id="a_text">
+                  {QuizQues[quesNo].a}
+                </label>
+              </li>
+              <li className="link">
+                <input
+                  type="radio"
+                  name="answer"
+                  id="b"
+                  value={QuizQues[quesNo].b}
+                  className="answer"
+                />
+                <label htmlFor="b" id="b_text">
+                  {QuizQues[quesNo].b}
+                </label>
+              </li>
+              <li className="link">
+                <input
+                  type="radio"
+                  name="answer"
+                  id="c"
+                  value={QuizQues[quesNo].c}
+                  className="answer"
+                />
+                <label htmlFor="c" id="c_text">
+                  {QuizQues[quesNo].c}
+                </label>
+              </li>
+              <li className="link">
+                <input
+                  type="radio"
+                  name="answer"
+                  id="d"
+                  value={QuizQues[quesNo].d}
+                  className="answer"
+                />
+                <label htmlFor="d" id="d_text">
+                  {QuizQues[quesNo].d}
+                </label>
+              </li>
+            </ul>
 
-              <button id="submit" onClick={handleNext}>
-                Submit
-              </button>
-            </>
-          </div>
-        ) : (
-          <Result count={count} details={details}  />
-        )}
+            <button id="submit" onClick={handleNext}>
+              Submit
+            </button>
+          </>
+        </div>
+        )
       </div>
     </div>
   );

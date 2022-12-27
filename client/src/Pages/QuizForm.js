@@ -90,6 +90,8 @@ const QuizForm = () => {
         console.log(data, "userRegister");
       });
       alert("Quiz added successfully")
+      setTitle("")
+      setDesc("")
   };
 
   return (

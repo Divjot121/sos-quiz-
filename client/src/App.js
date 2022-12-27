@@ -9,28 +9,34 @@ import QuizUser from "./Pages/QuizUser";
 import Login from "./Pages/Login";
 import TableResult from "./Pages/TableResult";
 import Scores from "./Pages/Scores";
+import Result from "./components/Result";
 
 const App = () => {
   const [quesId, setQuizId] = useState();
   const [details, setDetails] = useState([]);
   return (
-  
-      <Router>
-        <Navigation />
-        <Routes>
-          <Route exact path="/" element={<QuizShow setQuizId={setQuizId} />} />
-          <Route exact path="/form" element={<QuizForm />} />
-          <Route
-            exact
-            path="/login"
-            element={<Login quesId={quesId} setDetails={setDetails} details={details} />}
-          />
-          <Route exact path="/quiz/:id" element={<QuizUser details={details} />} />
-          <Route exact path="/score" element={<Scores/>}/>
-          <Route exact path="/score/:id" element={<TableResult/>}/>
-        </Routes>
-      </Router>
-  
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route exact path="/" element={<QuizShow setQuizId={setQuizId} />} />
+        <Route exact path="/form" element={<QuizForm />} />
+        <Route
+          exact
+          path="/login"
+          element={
+            <Login quesId={quesId} setDetails={setDetails} details={details} />
+          }
+        />
+        <Route
+          exact
+          path="/quiz/:id"
+          element={<QuizUser details={details} />}
+        />
+        <Route exact path="/result" element={<Result />} />
+        <Route exact path="/score" element={<Scores />} />
+        <Route exact path="/score/:id" element={<TableResult />} />
+      </Routes>
+    </Router>
   );
 };
 
