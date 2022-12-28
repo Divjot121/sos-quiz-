@@ -1,0 +1,19 @@
+@media screen and (min-width: 800px) {
+    .Login {
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(195, 230, 242);
+      width: 500px;
+      margin: 100px 100px 50px 400px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 20px;
+      
+    }
+    .logininp {
+      font-weight: bolder;
+      width: 35vw;
+    }
+  }
+  

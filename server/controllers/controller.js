@@ -32,6 +32,7 @@ export async function insertQuestions(req, res) {
   }
 }
 
+
 /** get all result */
 export async function getResult(req, res) {
   try {

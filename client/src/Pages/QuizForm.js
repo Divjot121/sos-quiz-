@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import QuesItem from "../components/QuesItem";
 import "./QuizForm.css";
 
-const QuizForm = () => {
+const QuizForm = ({admin}) => {
   const [QuizQues, setQuizQues] = useState([]);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -90,12 +90,16 @@ const QuizForm = () => {
         console.log(data, "userRegister");
       });
     alert("Quiz added successfully");
+    setQuizQues([])
     setTitle("");
     setDesc("");
   };
   
   return (
-    <div className="cont ">
+    
+      <div className="cont ">
+        { admin && 
+        <>
       <div>
         <form >
           <div className=" g-3 align-items-center m-1">
@@ -149,8 +153,12 @@ const QuizForm = () => {
       <div>
         <QuesItem QuizQues={QuizQues} setQuizQues={setQuizQues} />
       </div>
+      </>
+}
     </div>
-  );
+    )
+  
+  
 };
 
 export default QuizForm;

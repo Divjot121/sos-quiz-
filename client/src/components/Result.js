@@ -1,7 +1,9 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
+
 const Result = () => {
   const location = useLocation();
+ const navigate=useNavigate()
   const timearr = location.state.avgTime;
   const avg = timearr.reduce(function (accumVariable, curValue) {
     return accumVariable + curValue;
@@ -32,26 +34,32 @@ const Result = () => {
       .then((data) => {
         console.log(data, "userRegister");
       });
-      alert("response submitted")
+    alert("response submitted");
+    navigate("/")
   };
   return (
     <div className="container  border">
-
-      <h1>
-        Name:{" "}
-        <button className="btn btn-info text-light ">
-          {location.state.details[0].Name}
-        </button>
-      </h1>
-      <h1>
-        Email:{" "}
-        <button className="btn btn-info text-light">
-          {" "}
-          {location.state.details[0].Email}
-        </button>
-      </h1>
-      <h2>Your Score is {location.state.count}</h2>
-      <button onClick={handlesubmit} className="btn btn-success">confirm </button>
+     
+        <>
+          <h1>
+            Name:{" "}
+            <button className="btn btn-info text-light ">
+              {location.state.details[0].Name}
+            </button>
+          </h1>
+          <h1>
+            Email:{" "}
+            <button className="btn btn-info text-light">
+              {" "}
+              {location.state.details[0].Email}
+            </button>
+          </h1>
+          <h2>Your Score is {location.state.count}</h2>
+          <button onClick={handlesubmit} className="btn btn-success">
+            confirm{" "}
+          </button>
+        </>
+       
     </div>
   );
 };

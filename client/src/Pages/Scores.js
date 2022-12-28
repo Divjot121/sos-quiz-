@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getQuestionData } from "../helper/helper";
 
-const Scores = () => {
+const Scores = ({admin}) => {
  
   const [quizarry, setQuizarry] = useState([]);
  
@@ -17,8 +17,8 @@ const Scores = () => {
     
   }, []);
   return (
-    <form>
-      {quizarry.map((quizItem,index) => {
+   <form>
+      { admin && quizarry.map((quizItem,index) => {
         return (
           <div key={index}
             className="row m-3"
