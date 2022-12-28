@@ -17,7 +17,7 @@ const UserQues = ({
   const [sel, setSel] = useState();
   const [timer, setTimer] = useState(60);
   const [avgTime, setAvgTime] = useState([]);
-  
+
   const handlechange = (e) => {
     setSel(e.target.value);
   };
@@ -37,22 +37,19 @@ const UserQues = ({
       setCont((cont) => !cont);
     }
   };
-useEffect(()=>{
-  if (!cont) {
-    console.log(count);
-
-    navigate("/result", {
-      state: {
-        QuizQues:QuizQues,
-        quesid: quesid,
-        count: count,
-        details: details,
-        avgTime: avgTime,
-      },
-    });
-  }
-},[cont])
- 
+  useEffect(() => {
+    if (!cont) {
+      navigate("/result", {
+        state: {
+          QuizQues: QuizQues,
+          quesid: quesid,
+          count: count,
+          details: details,
+          avgTime: avgTime,
+        },
+      });
+    }
+  }, [cont]);
 
   useEffect(() => {
     const time = setInterval(() => {
@@ -135,7 +132,6 @@ useEffect(()=>{
             </button>
           </>
         </div>
-        
       </div>
     </div>
   );

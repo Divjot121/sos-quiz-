@@ -7,9 +7,9 @@ const QuizShow = ({setQuizId}) => {
   const [quizarry,setQuizarry]=useState([])
   
   useEffect(() => {
-    const data = getQuestionData("http://localhost:5000/api/questions");
+    const data = getQuestionData(`${process.env.REACT_APP_SERVER_HOST}/api/questions`);
       async function run() {
-        console.log(await data);
+        
         setQuizarry(await data)
       }
   

@@ -13,8 +13,8 @@ const QuizUser = ({ details }) => {
   useEffect(() => {
    
       async function run() {
-        const data = await getQuestionData("http://localhost:5000/api/questions");
-        console.log(  data);
+        const data = await getQuestionData(`${process.env.REACT_APP_SERVER_HOST}/api/questions`);
+       
         if (data) {
           let Currentques = data.filter((que) => {
             return que.id === id;

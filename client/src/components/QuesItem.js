@@ -3,12 +3,10 @@ import { AiFillDelete } from "react-icons/ai";
 import Dropdown from "react-bootstrap/Dropdown";
 const QuesItem = ({QuizQues,setQuizQues}) => {
   const removeElement = (index) => {
-    console.log(index);
+    
     const newQues = QuizQues.filter((arr) => arr.id!== index);
     setQuizQues(newQues);
-    if(newQues){
-      console.log(QuizQues)
-    }
+   
   };
   return (
     <table className="table m-3 w-100">

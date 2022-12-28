@@ -14,7 +14,6 @@ const Login = ({ quesId, setDetails, details }) => {
     setEmail(e.target.value);
   };
   const handledet = () => {
-    console.log(quesId);
     if (Name === "" || Email === "") {
       alert("please enter Crediatials");
     } else if (Name !== "" && Email !== "") {

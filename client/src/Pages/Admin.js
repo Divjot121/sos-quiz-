@@ -3,7 +3,7 @@ import "./Admin.css";
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 const Admin = ({ admin, setAdmin }) => {
-    const navigate=useNavigate()
+  const navigate = useNavigate();
   const [adminId, setAdminId] = useState("");
   const [password, setPassword] = useState("");
   const handleAdminId = (e) => {
@@ -14,12 +14,14 @@ const Admin = ({ admin, setAdmin }) => {
     setPassword(e.target.value);
   };
   const handleAuth = () => {
-    if (adminId === "amit123" && password === "amitpande") {
+    if (
+      adminId === process.env.REACT_APP_ADMIN_ID &&
+      password === process.env.REACT_APP_PASSWORD
+    ) {
       setAdmin(!admin);
       alert("user authenticated");
-      
-        navigate("/")
-      
+
+      navigate("/");
     } else {
       alert("wrong crediatials");
     }

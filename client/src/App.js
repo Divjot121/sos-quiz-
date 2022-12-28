@@ -16,9 +16,7 @@ const App = () => {
   const [quesId, setQuizId] = useState();
   const [details, setDetails] = useState([]);
   const [admin,setAdmin]=useState(false)
-  useEffect(()=>{
-console.log(admin)
-  },[admin])
+ 
   return (
     <Router>
       <Navigation admin={admin}/>
