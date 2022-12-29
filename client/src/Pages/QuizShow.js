@@ -5,9 +5,9 @@ import { getQuestionData } from '../helper/helper'
 
 const QuizShow = ({setQuizId}) => {
   const [quizarry,setQuizarry]=useState([])
-  
+
   useEffect(() => {
-    const data = getQuestionData(`${process.env.REACT_APP_SERVER_HOST}/api/questions`);
+    const data = getQuestionData(`http://localhost:5000/api/questions`);
       async function run() {
         
         setQuizarry(await data)

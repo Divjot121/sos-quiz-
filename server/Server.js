@@ -1,10 +1,10 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { config } from 'dotenv';
+
 import router from './router/route.js';
-
-
+const PORT=5000
+ 
 /** import connection file */
 import connect from './database/conn.js';
 
@@ -15,11 +15,11 @@ const app = express()
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
-config();
+
 
 
 /** appliation port */
-const port = process.env.PORT || 8080;
+const port = PORT || 8080;
 
 
 /** routes */

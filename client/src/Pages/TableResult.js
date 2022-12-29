@@ -8,7 +8,7 @@ const TableResult = () => {
   const [ResultList, setResultList] = useState([]);
   useEffect(() => {
     async function run() {
-      const data = await getResultData(`${process.env.REACT_APP_SERVER_HOST}/api/result`);
+      const data = await getResultData(`http://localhost:5000/api/result`);
       setResultList(data);
     }
  

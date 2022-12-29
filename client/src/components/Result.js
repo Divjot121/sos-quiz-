@@ -13,7 +13,7 @@ const Result = () => {
 
     const avvgtime = 60 - time;
     
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/api/result`, {
+    fetch(`http://localhost:5000/api/result`, {
       method: "POST",
       crossDomain: true,
       headers: {

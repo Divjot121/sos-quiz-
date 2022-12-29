@@ -68,7 +68,7 @@ const QuizForm = ({admin}) => {
     const time = today.getHours() + ":" + today.getMinutes();
     event.preventDefault();
 
-    fetch(`${process.env.REACT_APP_SERVER_HOST}/api/questions`, {
+    fetch(`http://localhost:5000/api/questions`, {
       method: "POST",
       crossDomain: true,
       headers: {

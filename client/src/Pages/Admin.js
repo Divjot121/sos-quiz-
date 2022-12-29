@@ -14,10 +14,7 @@ const Admin = ({ admin, setAdmin }) => {
     setPassword(e.target.value);
   };
   const handleAuth = () => {
-    if (
-      adminId === process.env.REACT_APP_ADMIN_ID &&
-      password === process.env.REACT_APP_PASSWORD
-    ) {
+    if (adminId === "SOSTECH" && password === "sostechincc22") {
       setAdmin(!admin);
       alert("user authenticated");
 
